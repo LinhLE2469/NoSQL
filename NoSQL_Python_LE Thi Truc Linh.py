@@ -1,5 +1,5 @@
 import pymongo as pymongo
-
+from bson.objectid import ObjectId
 def print_hi(name):
     print(f'Hi, {name}')
 
@@ -37,7 +37,6 @@ def number_3():
 def number_4():
     continents = connectbd()["continents"]
     countries = connectbd()["countries"]
-    from bson.objectid import ObjectId
     for continent in continents.find():
         for country_id in continent["countries"]:
             list = countries.find({"_id": ObjectId(country_id)}).sort("name")
