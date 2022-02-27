@@ -1,4 +1,3 @@
-
 import pymongo as pymongo
 
 def print_hi(name):
@@ -27,10 +26,10 @@ def number_1():
         print(x)
 # 2 Add continent collection link to countries collection. Actually Done in NodeJs
 
-#3 Send the list of continent with there number of country 
+#3 Send the list of continent with there number of country
 def number_3():
     continents = connectbd()["continents"]
-    list_continent = continents.aggregate([{'$project': { "count_number": {'$size': '$countries'}}}])
+    list_continent = continents.aggregate([{'$project': {'name': 1,"count_number": {'$size': '$countries'}}}])
     for x in list_continent:
         print(x)
 
@@ -45,7 +44,7 @@ def number_4():
             print(continent["name"], ':', list[0]["name"])
 
 
-#5 insert population into countries 
+#5 insert population into countries
 def number_5():
     countries = connectbd()["countries"]
     countries.update_many({}, {"$set": {"population":"xyz" }})
@@ -59,6 +58,8 @@ def number_5():
                                         {'$set': {"population": 59550000}})
     countries.find_one_and_update({'name': "Finland"},
                                         {'$set': {"population": 5531000}})
+    countries.find_one_and_update({'name': "Belgium"},
+                                  {'$set': {"population": 11589000}})
     countries.find_one_and_update({'name': "China"},
                                         {'$set': {"population": 1400000000}})
     countries.find_one_and_update({'name': "Indonesia"},
@@ -74,7 +75,7 @@ def number_6():
     order=countries.find().sort("population",1)
     for x in order:
         print(x)
-# 7 Gets countries where population is greater than 100000 and including u in the country name 
+# 7 Gets countries where population is greater than 100000 and including u in the country name
 def number_7():
     countries = connectbd()["countries"]
 
@@ -92,17 +93,4 @@ if __name__ == '__main__':
     #number_5()
     #number_6()
     #number_7()
-
-
-
-
-
-
-
-
-
-
-
-
-
 
