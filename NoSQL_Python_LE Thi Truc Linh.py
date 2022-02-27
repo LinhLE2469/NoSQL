@@ -26,10 +26,11 @@ def number_1():
     for x in document:
         print(x)
 # 2 Add continent collection link to countries collection. Actually Done in NodeJs
-#3 Send the list of continent with there number of country OK
+
+#3 Send the list of continent with there number of country 
 def number_3():
     continents = connectbd()["continents"]
-    list_continent = continents.aggregate([{'$project': {'name': 1, '_id': 0, 'NumberOfCountries is ': {'$size': '$countries'}}}])
+    list_continent = continents.aggregate([{'$project': { "count_number": {'$size': '$countries'}}}])
     for x in list_continent:
         print(x)
 
@@ -44,7 +45,7 @@ def number_4():
             print(continent["name"], ':', list[0]["name"])
 
 
-#5 insert population into countries OK
+#5 insert population into countries 
 def number_5():
     countries = connectbd()["countries"]
     countries.update_many({}, {"$set": {"population":"xyz" }})
@@ -67,13 +68,13 @@ def number_5():
     countries.find_one_and_update({'name': "IRAN"},
                                         {'$set': {"population": 83990000}})
 
-# 6 Gets all countries ordered by population in ascending order OK
+# 6 Gets all countries ordered by population in ascending order
 def number_6():
     countries = connectbd()["countries"]
     order=countries.find().sort("population",1)
     for x in order:
         print(x)
-# 7 // Number 7: Gets countries where population is greater than 100000 and including u in the country name OK
+# 7 Gets countries where population is greater than 100000 and including u in the country name 
 def number_7():
     countries = connectbd()["countries"]
 
