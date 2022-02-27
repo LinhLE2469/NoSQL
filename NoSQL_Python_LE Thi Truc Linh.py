@@ -1,8 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
 
 import pymongo as pymongo
 
@@ -92,7 +87,7 @@ if __name__ == '__main__':
     #list()
     #number_1()
     #number_3()
-    number_4()
+    #number_4()
     #number_5()
     #number_6()
     #number_7()
@@ -105,7 +100,7 @@ if __name__ == '__main__':
 
 
 
-# In[ ]:
+
 
 
 
